@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width; user-scalable=0">
+  <title>Blobs and Clouds and Waves, Oh My!</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>
+  <script src="https://unpkg.com/tone"></script>
+  <script src="three.js"></script>
+  <script src="cloudgen-min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+</head>
+
+<body>
+  <!--  Turn to landscape message  -->
+  <div class="turnToLandscape" id="background3">
+    <div class="turnToLandscape" id="popupWindow3"></div>
+    <div class="turnToLandscape text" id="title3">Please turn your device to landscape and then reload</div>
+  </div>
+
+<!--   Save link -->
+  <div class="saveLink" id="background4">
+    <div class="saveLink" id="popupWindow4">
+      <div class="saveLink text" id="linkTitle">Link to share your creation:</div>
+      <input type="text" class="saveLink text" id="link" readonly>
+      <button class="saveLink" id="copyLink">Copy link</button>
+      <button class="saveLink" id="closeSaveLink">Close</button>
+    </div>
+  </div>
+  
+<!-- Blobs stuff -->
+  <div class="blobStuff">
+    <div class="lamp">
+      <div class="lava">
+        <div class="blob blobStuff" title="This is a blob"></div>
+        <div class="blob blobStuff" title="This is a blob"></div>
+        <div class="blob blobStuff" title="This is a blob"></div>
+        <div class="blob blobStuff" title="This is a special blob. It gives you the magical powers of goat-eating enchiladas"></div>
+        <div class="blob blobStuff" title="This is a blob"></div>
+        <div class="blob blobStuff" title="This is a blob"></div>
+        <div class="blob blobStuff" title="This is a blob"></div>
+        <div class="blob blobStuff" title="This is a blob"></div>
+<!--         <div class="blob top blobStuff"></div> -->
+        <div class="blob bottom blobStuff"></div>
+      </div>
+    </div>
+    <svg class="blobStuff" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter class="blobStuff" id="goo">
+          <feGaussianBlur class="blobStuff" in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix class="blobStuff" in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+          <feBlend class="blobStuff" in="SourceGraphic" in2="goo"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+
+  <div id="canvases">
+  </div>
+  <div id="thing">
+    <div class="text" id="visualLabel">Select your visual:</div>
+    <img class="recordingButtons" id="recordButton" src="record.png" title="Click to start and stop recording">
+    <img class="recordingButtons" id="playButton" src="play.png" title="Click to play your latest recording">
+    <select id="visual" onchange="visualChanged()">
+      <option id="blobs">Blobs</option>
+      <option id="clouds">Clouds</option>
+      <option id="waves">Waves</option>
+    </select>
+  </div>
+  <img id="blobButton" src="!.png" title="Click me!">
+  <div id="popupWindow5">
+    <div id="blobText">Hey desktop users! If you hover your mouse on a blob, it shows a description. Most of them say the same thing, but one of them is a special blob. See if you can find it!</div>
+  </div>
+  
+<!--   Keys -->
+  <div class="key">
+<!--     white keys -->
+    <button class="whiteKeys" id="1">C
+    </button>
+    <button class="whiteKeys" id="3">D
+    </button>
+    <button class="whiteKeys" id="5">E
+    </button>
+    <button class="whiteKeys" id="6">F
+    </button>
+    <button class="whiteKeys" id="8">G
+    </button>
+    <button class="whiteKeys" id="10">A
+    </button>
+    <button class="whiteKeys" id="12">B
+    </button>
+    
+    <button class="whiteKeys" id="13">C
+    </button>
+    <button class="whiteKeys" id="15">D
+    </button>
+    <button class="whiteKeys" id="17">E
+    </button>
+    <button class="whiteKeys" id="18">F
+    </button>
+    <button class="whiteKeys" id="20">G
+    </button>
+    <button class="whiteKeys" id="22">A
+    </button>
+    <button class="whiteKeys" id="24">B
+    </button>
+    
+<!--     black keys  -->
+    <button class="blackKeys" id="2">C#
+    </button>
+    <button class="blackKeys" id="4">D#
+    </button>
+    <button class="blackKeys" id="7">F#
+    </button>
+    <button class="blackKeys" id="9">G#
+    </button>
+    <button class="blackKeys" id="11">A#
+    </button>
+
+    <button class="blackKeys" id="14">C#
+    </button>
+    <button class="blackKeys" id="16">D#
+    </button>
+    <button class="blackKeys" id="19">F#
+    </button>
+    <button class="blackKeys" id="21">G#
+    </button>
+    <button class="blackKeys" id="23">A#
+    </button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
