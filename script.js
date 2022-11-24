@@ -7,7 +7,7 @@ var previousTime = 0;
 var fixedWindowWidth = window.innerWidth;
 
 //Necessary functions
-var serialize = function (thingToSerialize, keyName) {
+var serialize = function(thingToSerialize, keyName) {
   thingToSerialize = JSON.stringify(thingToSerialize)
   window.localStorage.setItem(keyName, thingToSerialize)
 }
@@ -28,13 +28,13 @@ var canvas = document.createElement("canvas");
 canvas.style.position = "absolute";
 c = canvas.getContext("2d");
 canvas.width = innerWidth;
-canvas.height = innerHeight*65/100;
+canvas.height = innerHeight * 65 / 100;
 canvas.style.top = "5%";
 
 const wave = {
-  y: canvas.height/2,
+  y: canvas.height / 2,
   length: 0.01,
-  amplitude: canvas.height*65/200,
+  amplitude: canvas.height * 65 / 200,
   frequency: 0.01
 };
 
@@ -51,7 +51,7 @@ const backgroundColor = {
   a: 0.01
 };
 
-var deserialize = function (keyName) {
+var deserialize = function(keyName) {
   var thingToDeserialize = window.localStorage.getItem(keyName)
   if (typeof thingToDeserialize === "undefined" || thingToDeserialize === null) {
     return null
@@ -65,27 +65,27 @@ var deserialize = function (keyName) {
 // Defining containers (variables, arrays, dictionaries, etc.)
 var cloudgenColours = deserialize("cloudgenColours");
 if (cloudgenColours == null) {
-  cloudgenColours = [[81,201,252],[255,193,48],[180,36,7],[30,181,71],[5,176,16],[0,2,184],[255,149,26],[1,133,65],[20,252,101],[201,165,44],[180,180,180],[250,163,2],[81,201,252],[255,193,48],[180,36,7],[30,181,71],[5,176,16],[0,2,184],[255,149,26],[1,133,65],[20,252,101],[201,165,44],[180,180,180],[250,163,2]];
+  cloudgenColours = [[81, 201, 252], [255, 193, 48], [180, 36, 7], [30, 181, 71], [5, 176, 16], [0, 2, 184], [255, 149, 26], [1, 133, 65], [20, 252, 101], [201, 165, 44], [180, 180, 180], [250, 163, 2], [81, 201, 252], [255, 193, 48], [180, 36, 7], [30, 181, 71], [5, 176, 16], [0, 2, 184], [255, 149, 26], [1, 133, 65], [20, 252, 101], [201, 165, 44], [180, 180, 180], [250, 163, 2]];
 }
 var cssColours = deserialize("cssColours");
 if (cssColours == null) {
-  cssColours = ["rgb(81,201,252)","rgb(255,193,48)", "rgb(180,36,7)", "rgb(30,181,71)", "rgb(5,176,16)", "rgb(0,2,184)", "rgb(255,149,26)", "rgb(1,133,65)", "rgb(20,252,101)", "rgb(201,165,44)", "rgb(180,180,180)", "rgb(250,163,2)", "rgb(81,201,252)","rgb(255,193,48)", "rgb(180,36,7)", "rgb(30,181,71)", "rgb(5,176,16)", "rgb(0,2,184)", "rgb(255,149,26)", "rgb(1,133,65)", "rgb(20,252,101)", "rgb(201,165,44)", "rgb(180,180,180)", "rgb(250,163,2)"];
+  cssColours = ["rgb(81,201,252)", "rgb(255,193,48)", "rgb(180,36,7)", "rgb(30,181,71)", "rgb(5,176,16)", "rgb(0,2,184)", "rgb(255,149,26)", "rgb(1,133,65)", "rgb(20,252,101)", "rgb(201,165,44)", "rgb(180,180,180)", "rgb(250,163,2)", "rgb(81,201,252)", "rgb(255,193,48)", "rgb(180,36,7)", "rgb(30,181,71)", "rgb(5,176,16)", "rgb(0,2,184)", "rgb(255,149,26)", "rgb(1,133,65)", "rgb(20,252,101)", "rgb(201,165,44)", "rgb(180,180,180)", "rgb(250,163,2)"];
 }
 
 //Making list version of cloudgenColours
 cloudgenColoursDicts = [];
 var updateCloudgenColoursDicts = function() {
-  for (var i = 0; i < cloudgenColours.length; i++){
-    cloudgenColoursDicts.push({r:cloudgenColours[i][0], g:cloudgenColours[i][1], b:cloudgenColours[i][2]})
+  for (var i = 0; i < cloudgenColours.length; i++) {
+    cloudgenColoursDicts.push({ r: cloudgenColours[i][0], g: cloudgenColours[i][1], b: cloudgenColours[i][2] })
   }
 }
 updateCloudgenColoursDicts();
 
 //Rendering preparation
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setSize(window.innerWidth, window.innerHeight);
 var pickr = null;
 
 window.onload = function() {
@@ -93,23 +93,23 @@ window.onload = function() {
   pickr = Pickr.create({
     el: "#newColourPreview",
     theme: 'nano', // or 'monolith', or 'nano'
-    
+
     components: {
       // Main components
       preview: true,
       opacity: true,
       hue: true,
-  
+
       // Input / output Options
       interaction: {
-          hex: true,
-          rgba: true,
-          hsla: true,
-          hsva: true,
-          cmyk: true,
-          input: true,
-          clear: true,
-          save: true
+        hex: true,
+        rgba: true,
+        hsla: true,
+        hsva: true,
+        cmyk: true,
+        input: true,
+        clear: true,
+        save: true
       }
     }
   });
@@ -121,7 +121,7 @@ window.onload = function() {
   picker.style.display = "none";
   picker.style.zIndex = "12";
   picker.style.width = "100px";
-  picker.style.height = "100px"; 
+  picker.style.height = "100px";
 
   //Media query
   function mediaQueries(x) {
@@ -130,7 +130,7 @@ window.onload = function() {
       picker.style.height = "50px";
     }
   }
-  
+
   var x = window.matchMedia("(max-height: 451px)")
   mediaQueries(x) // Call listener function at run time
   x.addListener(mediaQueries) // Attach listener function on state changes
@@ -144,7 +144,7 @@ var rgbValuesExtractor = function(string) {
   var values = [];
   var placeholder = "";
   var index = 0;
-  for (var i = 5; i<string.length-1;i++) {
+  for (var i = 5; i < string.length - 1; i++) {
     if (string[i] == ",") {
       values[index] = parseInt(placeholder);
       index++;
@@ -171,14 +171,14 @@ var newCanvas = function(opacity) {
 
 var createCloud = function(x, opacity) {
   var list = newCanvas(opacity);
-  list[0].style.left = x+"px";
-  $cloudgen.drawCloud(list[1], list[0].width/2, list[0].height/2, list[0].height/3, cloudgenColoursDicts[cloudColourIndex], 1);
+  list[0].style.left = x + "px";
+  $cloudgen.drawCloud(list[1], list[0].width / 2, list[0].height / 2, list[0].height / 3, cloudgenColoursDicts[cloudColourIndex], 1);
 }
 
 var identifyPosition = function(object, property) {
   var cssObj = window.getComputedStyle(object, null);
   var leftValue = cssObj.getPropertyValue(property);
-  var noPx = leftValue.substring(0, leftValue.length-2);
+  var noPx = leftValue.substring(0, leftValue.length - 2);
   return parseInt(noPx);
 }
 
@@ -215,18 +215,18 @@ var animateClouds = function() {
 }
 
 //reactions when the keys get pressed
-for (var i = 0;i<24;i++) {
-  var halfOfId = i+1
+for (var i = 0; i < 24; i++) {
+  var halfOfId = i + 1
   var stringVersion = halfOfId.toString();
-  var id = stringVersion+".mp3"
+  var id = stringVersion + ".mp3"
   var note = new Tone.Player(id).toDestination()
   console.log(id)
   notes.push(note)
-  document.getElementById(i+1).addEventListener("mousedown", function (event) {
+  document.getElementById(i + 1).addEventListener("mousedown", function(event) {
     if (event.button == 0) {
       Tone.loaded().then(() => {
-        notes[event.target.id-1].start();
-        notes[event.target.id-1].toDestination();
+        notes[event.target.id - 1].start();
+        notes[event.target.id - 1].toDestination();
         cloudColourIndex = event.target.id - 1;
         newlyPressed = true;
       });
@@ -245,11 +245,11 @@ for (var i = 0;i<24;i++) {
 function parsePosition(position) {
   var index = Math.floor(position / 8);
   var bit = 1 << (position % 8);
-  return {index, bit};
+  return { index, bit };
 }
 
 function serializeBits(binaryNotes, position, number, numBits) {
-  for (var mask = (1 << (numBits-1)); mask > 0; mask = mask >> 1) {
+  for (var mask = (1 << (numBits - 1)); mask > 0; mask = mask >> 1) {
     setBit(binaryNotes, position, (number & mask));
     position++;
   }
@@ -257,7 +257,7 @@ function serializeBits(binaryNotes, position, number, numBits) {
 
 function deserializeBits(binaryNotes, position, numBits) {
   var number = 0;
-  for (var mask = (1 << (numBits-1)); mask > 0; mask = mask >> 1) {
+  for (var mask = (1 << (numBits - 1)); mask > 0; mask = mask >> 1) {
     if (getBit(binaryNotes, position)) {
       number += mask;
     }
@@ -269,7 +269,7 @@ function deserializeBits(binaryNotes, position, numBits) {
 function createUrlToShare() {
   var binaryNotes = new Uint8Array(recordedNotes[1].length * 2);
   var bitIndex = 0;
-  for (var i = 0; i < recordedNotes[1].length;i++) {
+  for (var i = 0; i < recordedNotes[1].length; i++) {
     var newId = parseInt(recordedNotes[1][i][0]);
     serializeBits(binaryNotes, bitIndex, newId, 5);
     bitIndex += 5;
@@ -280,7 +280,7 @@ function createUrlToShare() {
   }
   console.log(binaryNotes);
   var binStr = "";
-  for (var i = 0; i < binaryNotes.byteLength; i++){
+  for (var i = 0; i < binaryNotes.byteLength; i++) {
     binStr += String.fromCharCode(binaryNotes[i]);
   }
   return "https://musictocolor.com?t=" + recordedNotes[0] + "&v=" + window.btoa(binStr);
@@ -294,8 +294,8 @@ function parseSharedUrl(url) {
   if (typeIndex == -1 || valIndex == -1) {
     return false;
   }
-  recordedNotes[0] = url.substr(typeIndex+3, valIndex-typeIndex-3);
-  var base64Str = url.substr(valIndex+3);
+  recordedNotes[0] = url.substr(typeIndex + 3, valIndex - typeIndex - 3);
+  var base64Str = url.substr(valIndex + 3);
 
   var binStr = window.atob(base64Str);
   var binaryNotes = new Uint8Array(binStr.length);
@@ -319,8 +319,8 @@ function parseSharedUrl(url) {
 }
 
 function setBit(bits, position, on) {
-  const {index, bit} = parsePosition(position); 
-  if(on) {
+  const { index, bit } = parsePosition(position);
+  if (on) {
     bits[index] |= bit;
   } else {
     bits[index] &= 0xFF ^ bit;
@@ -328,7 +328,7 @@ function setBit(bits, position, on) {
 }
 
 function getBit(bits, position) {
-  const {index, bit} = parsePosition(position);
+  const { index, bit } = parsePosition(position);
   return !!(bits[index] & bit);
 }
 
@@ -340,7 +340,7 @@ var redrawClouds = function() {
       i = i - 1;
     }
     else {
-      var alpha = parseFloat(canvases[i].style.opacity)-0.02;
+      var alpha = parseFloat(canvases[i].style.opacity) - 0.02;
       canvases[i].style.opacity = alpha;
     }
   }
@@ -371,8 +371,8 @@ var RGBToHSL = function(r, g, b) {
     ? l === r
       ? (g - b) / s
       : l === g
-      ? 2 + (b - r) / s
-      : 4 + (r - g) / s
+        ? 2 + (b - r) / s
+        : 4 + (r - g) / s
     : 0;
   return [
     60 * h < 0 ? 60 * h + 360 : 60 * h,
@@ -424,7 +424,7 @@ var visualChanged = function() {
     }
     document.getElementById("canvases").appendChild(canvas);
     document.body.style.backgroundColor = "";
-    animate()    
+    animate()
   }
   else if (document.getElementById("visual").value == "Clouds") {
     var array = document.getElementsByClassName("blobStuff");
@@ -432,9 +432,9 @@ var visualChanged = function() {
       array[i].style.display = "none";
     }
     createCloud(0, "0.7");
-    createCloud(window.innerWidth*5/24, "0.2");
-    createCloud(window.innerWidth*5/12, "0.7");
-    createCloud(window.innerWidth*5/8, "0.2");
+    createCloud(window.innerWidth * 5 / 24, "0.2");
+    createCloud(window.innerWidth * 5 / 12, "0.7");
+    createCloud(window.innerWidth * 5 / 8, "0.2");
     document.body.style.backgroundColor = "black";
   }
   else if (document.getElementById("visual").value == "Blobs") {
@@ -452,9 +452,9 @@ document.getElementById("copyLink").addEventListener("mousedown", function() {
 
 document.getElementById("closeSaveLink").addEventListener("mousedown", function() {
   var array = document.getElementsByClassName("saveLink");
-    for (var i = 0; i < array.length; i++) {
-      array[i].style.display = "none";
-    }
+  for (var i = 0; i < array.length; i++) {
+    array[i].style.display = "none";
+  }
 })
 
 var playNote = function(i) {
@@ -466,7 +466,7 @@ var playNote = function(i) {
   newlyPressed = true;
   i++;
   if (i < recordedNotes[1].length) {
-    window.setTimeout(function() {playNote(i);}, recordedNotes[1][i][1]);
+    window.setTimeout(function() { playNote(i); }, recordedNotes[1][i][1]);
   }
   else {
     document.getElementById("playButton").style.boxShadow = "";
@@ -475,10 +475,13 @@ var playNote = function(i) {
 
 var playback = function() {
   var i = 0;
+  // Sometimes people take a few seconds before the first key press.
+  // Ignore that and play the first key quickly for good experience.
+  recordedNotes[1][0][1] = 500; // milliseconds.
   Tone.loaded().then(() => {
     window.setTimeout(function() {
       playNote(i);
-    }, recordedNotes[1][0][1]); 
+    }, recordedNotes[1][0][1]);
   });
 }
 
@@ -497,10 +500,14 @@ var checkBlobs = function() {
 window.addEventListener("load", function() {
   if (parseSharedUrl(window.location.href)) {
     console.log("trueeeee");
-    playback()
+    document.getElementsByClassName("playOnLoad")[0].style.display = "block";
+    document.getElementById("playOnLoadButton").addEventListener("click", function() {
+      document.getElementsByClassName("playOnLoad")[0].style.display = "none";
+      playback();
+    });
   }
   visualChanged();
-  window.setInterval(function () {
+  window.setInterval(function() {
     checkAndChangeWidth();
     if (document.getElementById("visual").value == "Clouds") {
       animateClouds();
@@ -509,31 +516,40 @@ window.addEventListener("load", function() {
       checkBlobs();
     }
   }, 100);
-  
   document.getElementById("recordButton").addEventListener("mousedown", function() {
     if (recordStatus == false) {
       recordStatus = true;
       var newDate = new Date();
       previousTime = (newDate.getMinutes() * 60000) + (newDate.getSeconds() * 1000) + (newDate.getMilliseconds());
       console.log(previousTime);
+      document.getElementById("recordingOn").style.display = "inline";
       document.getElementById("recordButton").style.boxShadow = "0px 0px 15px 10px #ff0000";
+      document.getElementById("playButton").style.opacity = "25%";
     }
     else if (recordStatus == true) {
       recordStatus = false;
+      document.getElementById("recordingOn").style.display = "none";
       document.getElementById("recordButton").style.boxShadow = "";
-      recordedNotes = [document.getElementById("visual").value, fodderList];
-      console.log(recordedNotes);
-      fodderList = [];
-      urlparam = createUrlToShare();
-      var array = document.getElementsByClassName("saveLink");
-      for (var i = 0; i < array.length; i++) {
-        array[i].style.display = "block";
+      document.getElementById("playButton").style.opacity = "";
+      if (fodderList.length > 0) {
+        recordedNotes = [document.getElementById("visual").value, fodderList];
+        console.log(recordedNotes);
+        fodderList = [];
+        urlparam = createUrlToShare();
+        var array = document.getElementsByClassName("saveLink");
+        for (var i = 0; i < array.length; i++) {
+          array[i].style.display = "block";
+        }
+        document.getElementById("link").value = urlparam;
       }
-      document.getElementById("link").placeholder = urlparam;
     }
   });
   document.getElementById("playButton").addEventListener("mousedown", function() {
-    document.getElementById("playButton").style.boxShadow = "0px 0px 15px 10px #ff0000";
-    playback();
+    if (recordedNotes.length > 0) {
+      document.getElementById("playButton").style.boxShadow = "0px 0px 15px 10px #ff0000";
+      playback();
+    } else {
+      window.alert("Record a tune first, then click Play.");
+    }
   })
 });

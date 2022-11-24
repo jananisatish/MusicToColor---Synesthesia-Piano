@@ -11,7 +11,7 @@ text {
   word-wrap: break-word;
 }
 
-img {
+imgRR {
   position: absolute;
   z-index: 11;
   display: block;
@@ -72,7 +72,7 @@ img {
   
 }
 
-#visualLabel {
+#visualLabel, #recordingOn {
   color: white;
 }
 
@@ -101,13 +101,21 @@ img {
 .colourChange {
   display: none;
 }
-
+.playOnLoad {
+  display: none;
+}
+#playOnLoadButton {
+  margin-top: 100px;
+}
 .turnToLandscape {
   display: none;
 }
 
 .saveLink {
   display: none;
+}
+.saveLink > input {
+  width: 95%
 }
 
 .mainpage {
@@ -121,6 +129,7 @@ img {
   margin-left: 2%;
   padding: 2%;
   font-size: 100%;
+  width: 90%;
 }
 
 #linkText {
@@ -128,10 +137,10 @@ img {
   margin-top: 5%;
 }
 
-#copyLink {
+#copyLink, #closeSaveLink {
   padding: 2%;
-  margin-right: 15%;
-  margin-top: 8%;
+  margin: 8%;
+  display: inline;
 }
 
 #background {
@@ -171,7 +180,7 @@ img {
   z-index: 9;
   position: absolute;
   text-align: center;
-  font-size: 200%;
+  font-size: 150%;
   background-color: rgba(255, 251, 247,1);
   width: 100%;
   height: 100%;
@@ -204,19 +213,39 @@ img {
 }
 
 #title3 {
-  position: absolute;
   z-index: 10;
-  top: 38%;
-  left: 25%;
-  width: 50%;
   font-size: 200%;
-  color: green;
+  color: darkgreen;
+  margin: 10px;
 }
 
-#thing {
+.topToolbar {
   position: absolute;
   top: 0%;
   width: 100%;
+  padding: 4px;
+}
+.topToolbarButtons {
+  right: 10px;
+  top: 10px;
+  display: inline;
+  position: absolute;
+}
+
+.recordingButtons {
+  width: 5ch;
+  height: 5ch;
+  margin-right: 2ch;
+  border-radius:50%;
+}
+
+#recordingOn {
+  display: none;
+  margin-right: 10px;
+}
+
+#playButton {
+  background-color: #46b426;
 }
 
 #popupWindow {
@@ -256,25 +285,29 @@ img {
 
 #popupWindow3 {
   position: absolute;
-  width: 50%;
-  height: 50%;
-  top: 25%;
-  left: 25%;
+  width: 60%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-style: solid;
   border-width: 2px;
   background-color: antiquewhite;
+  border-radius: 8px;
   opacity: 100%;
 }
 
 #popupWindow4 {
   position: absolute;
-  width: 50%;
-  height: 50%;
-  top: 25%;
-  left: 25%;
+  width: 60%;
+  max-width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-style: solid;
   border-width: 2px;
   background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 10px;
   opacity: 100%;
 }
 
@@ -363,22 +396,6 @@ img {
   left: 67%;
 }
 
-.recordingButtons {
-  right: 1%;
-  width: 30px;
-  height: 30px;
-  border-radius:50%;
-  position: absolute;
-}
-
-#recordButton {
-  right: 4%;
-}
-
-#playButton {
-  background-color: white;
-}
-
 /* Media queries */
 @media only screen and (max-width: 1287px) {
   #managePalettes {
@@ -449,7 +466,7 @@ img {
 
 @media only screen and (max-width: 566px) {
   #title3 {
-    font-size: 130%;
+    font-size: 113%;
     word-wrap: break-word;
   }
 }

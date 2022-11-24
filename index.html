@@ -14,19 +14,27 @@
 </head>
 
 <body>
+  <!--  Play button overlay on page load  -->
+  <div class="playOnLoad" id="background3">
+    <img id="playOnLoadButton" src="playonload.png" title="Click to play the tune">
+  </div>
+
   <!--  Turn to landscape message  -->
   <div class="turnToLandscape" id="background3">
-    <div class="turnToLandscape" id="popupWindow3"></div>
-    <div class="turnToLandscape text" id="title3">Please turn your device to landscape and then reload</div>
+    <div id="popupWindow3">
+      <div text" id="title3">Please turn your device to landscape and then reload</div>
+    </div>
   </div>
 
 <!--   Save link -->
   <div class="saveLink" id="background4">
-    <div class="saveLink" id="popupWindow4">
-      <div class="saveLink text" id="linkTitle">Link to share your creation:</div>
-      <input type="text" class="saveLink text" id="link" readonly>
-      <button class="saveLink" id="copyLink">Copy link</button>
-      <button class="saveLink" id="closeSaveLink">Close</button>
+    <div id="popupWindow4">
+      <div class="text" id="linkTitle">Congratulations! Here is a link to the tune, to share with others:</div>
+      <input type="text" class="text" id="link" >
+      <div>
+        <button id="copyLink">Copy link</button>
+        <button id="closeSaveLink">Close</button>
+      </div>
     </div>
   </div>
   
@@ -59,15 +67,18 @@
 
   <div id="canvases">
   </div>
-  <div id="thing">
+  <div class="topToolbar">
     <div class="text" id="visualLabel">Select your visual:</div>
-    <img class="recordingButtons" id="recordButton" src="record.png" title="Click to start and stop recording">
-    <img class="recordingButtons" id="playButton" src="play.png" title="Click to play your latest recording">
     <select id="visual" onchange="visualChanged()">
       <option id="blobs">Blobs</option>
       <option id="clouds">Clouds</option>
       <option id="waves">Waves</option>
     </select>
+    <div class="topToolbarButtons">
+      <div class="text" id="recordingOn">Recording On</div>
+      <img class="recordingButtons" id="recordButton" src="record.png" title="Click to start and stop recording">
+      <img class="recordingButtons" id="playButton" src="play.png" title="Click to play your latest recording">
+    </div>
   </div>
   <img id="blobButton" src="!.png" title="Click me!">
   <div id="popupWindow5">
