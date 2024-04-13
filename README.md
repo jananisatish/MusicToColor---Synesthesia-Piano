@@ -16,7 +16,7 @@ a little surprise for desktop users if you click on the ! in the corner.
 ![image](https://user-images.githubusercontent.com/31810543/203854703-0d9806da-b9f1-479d-8bdf-efe47c7703f6.png)
 
 You can use the buttons in the top right corner to record and play back your own tunes. Once you have recorded your tune, you will be given a link that will have your
-stored tune on it. Here is an example of a tune I made: https://musictocolor.com?t=Blobs&v=Dt4VGhmiDhoRUgoaAfoS6g6W
+stored tune on it. Edit: the sharing feature no longer works due to repl.it changing their domain; however, you can still record and play back your tunes.
 
-I hope to release an updated version soon that allows you to customize the colors for each key, as chromesthetes usually don't see the same colors for each note. But for
-now, have fun playing!
+Here is a link to the website: https://58667d11-2fc8-47ee-8315-07690da2d98e-00-1otdjun7ekx8c.spock.replit.dev/. I hope to release an updated version soon that allows 
+you to customize the colors for each key, as chromesthetes usually don't see the same colors for each note. But for now, have fun playing!
